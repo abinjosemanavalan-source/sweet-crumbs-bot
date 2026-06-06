@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard – Sweet Crumbs Bakery</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">🧁 Sweet Crumbs<span>Admin</span></div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-tab="dashboard">📊 Dashboard</a>
+      <a href="#" class="nav-item" data-tab="orders">📦 Orders</a>
+      <a href="#" class="nav-item" data-tab="analytics">📈 Analytics</a>
+    </nav>
+    <a href="/" class="sidebar-footer">← Back to Website</a>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="admin-main">
+
+    <!-- Dashboard Tab -->
+    <div class="tab-pane active" id="tab-dashboard">
+      <div class="admin-header">
+        <h1>Dashboard</h1>
+        <button class="btn-refresh" onclick="loadAll()">↻ Refresh</button>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card blue">
+          <div class="stat-label">Total Orders</div>
+          <div class="stat-value" id="sTotalOrders">—</div>
+          <div class="stat-sub">All time</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">Total Revenue</div>
+          <div class="stat-value" id="sTotalRevenue">—</div>
+          <div class="stat-sub">All time</div>
+        </div>
+        <div class="stat-card orange">
+          <div class="stat-label">Today's Orders</div>
+          <div class="stat-value" id="sTodayOrders">—</div>
+          <div class="stat-sub">Today</div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-label">Top Product</div>
+          <div class="stat-value" id="sTopProduct">—</div>
+          <div class="stat-sub">Most ordered</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="stat-label">Weekly Revenue</div>
+          <div class="stat-value" id="sWeeklyRev">—</div>
+          <div class="stat-sub">Last 7 days</div>
+        </div>
+        <div class="stat-card rose">
+          <div class="stat-label">Monthly Revenue</div>
+          <div class="stat-value" id="sMonthlyRev">—</div>
+          <div class="stat-sub">Last 30 days</div>
+        </div>
+      </div>
+
+      <!-- Mini Charts -->
+      <div class="chart-row">
+        <div class="chart-box">
+          <h3>Order Status</h3>
+          <canvas id="statusChart"></canvas>
+        </div>
+        <div class="chart-box">
+          <h3>Top Products</h3>
+          <canvas id="productChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Orders Tab -->
+    <div class="tab-pane" id="tab-orders">
+      <div class="admin-header">
+        <h1>Orders</h1>
+        <div class="orders-controls">
+          <input type="text" id="searchInput" placeholder="Search name, phone, ID…" oninput="loadOrders()">
+          <select id="statusFilter" onchange="loadOrders()">
+            <option value="">All Statuses</option>
+            <option>Pending</option>
+            <option>Preparing</option>
+            <option>Out for Delivery</option>
+            <option>Delivered</option>
+            <option>Cancelled</option>
+          </select>
+          <button class="btn-refresh" onclick="loadOrders()">↻</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>Order ID</th><th>Name</th><th>Phone</th>
+              <th>Product</th><th>Qty</th><th>Total</th>
+              <th>Status</th><th>Date</th><th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="ordersBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Analytics Tab -->
+    <div class="tab-pane" id="tab-analytics">
+      <div class="admin-header"><h1>Analytics</h1></div>
+      <div class="chart-row">
+        <div class="chart-box full">
+          <h3>Product Revenue Breakdown</h3>
+          <canvas id="revenueChart" style="max-height:350px"></canvas>
+        </div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-box">
+          <h3>Orders by Status (Donut)</h3>
+          <canvas id="donutChart"></canvas>
+        </div>
+        <div class="chart-box">
+          <h3>Product Quantity Sold</h3>
+          <canvas id="qtyChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="/static/js/admin.js"></script>
+</body>
+</html>

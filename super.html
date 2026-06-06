@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweet Crumbs Bakery</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#fffaf5;
+    color:#333;
+}
+
+header{
+    background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+    url('https://images.unsplash.com/photo-1509440159596-0249088772ff');
+    background-size:cover;
+    background-position:center;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    color:white;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:700;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-weight:500;
+}
+
+.hero{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:20px;
+    margin-bottom:25px;
+}
+
+.btn{
+    display:inline-block;
+    background:#d97706;
+    color:white;
+    padding:14px 30px;
+    border-radius:30px;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#b45309;
+}
+
+section{
+    padding:80px 8%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:50px;
+    color:#8b4513;
+}
+
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+}
+
+.about img{
+    width:100%;
+    border-radius:15px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.price{
+    color:#d97706;
+    font-weight:600;
+    margin-top:10px;
+}
+
+.contact{
+    background:#8b4513;
+    color:white;
+    text-align:center;
+    border-radius:20px;
+}
+
+.contact p{
+    margin:10px 0;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#4b2e1e;
+    color:white;
+}
+
+@media(max-width:768px){
+    .hero h1{
+        font-size:40px;
+    }
+
+    .about{
+        grid-template-columns:1fr;
+    }
+
+    nav{
+        flex-direction:column;
+        gap:15px;
+    }
+}
+
+/* Chatbot Styles */
+.chatbot-toggler {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    outline: none;
+    border: none;
+    height: 60px;
+    width: 60px;
+    background: #d97706;
+    color: white;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+.chatbot-toggler:hover {
+    background: #b45309;
+    transform: scale(1.05);
+}
+.chatbot-toggler span {
+    font-size: 28px;
+    position: absolute;
+}
+.chatbot-toggler span.close-icon {
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+}
+.show-chatbot .chatbot-toggler span.open-icon {
+    opacity: 0;
+    transform: scale(0);
+}
+.show-chatbot .chatbot-toggler span.close-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+.chatbot {
+    position: fixed;
+    right: 30px;
+    bottom: 110px;
+    width: 350px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.5);
+    transform-origin: bottom right;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+.show-chatbot .chatbot {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+.chatbot header {
+    background: #d97706;
+    color: #fff;
+    padding: 15px 20px;
+    text-align: center;
+    position: relative;
+    height: auto;
+    display: block;
+}
+.chatbot header h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.chatbox {
+    height: 350px;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: #fdfdfd;
+}
+.chatbox .chat {
+    display: flex;
+    align-items: flex-end;
+}
+.chatbox .chat p {
+    color: #fff;
+    max-width: 80%;
+    font-size: 0.95rem;
+    padding: 10px 15px;
+    border-radius: 15px 15px 0 15px;
+    background: #d97706;
+    word-wrap: break-word;
+}
+.chatbox .incoming p {
+    color: #333;
+    background: #f2f2f2;
+    border-radius: 15px 15px 15px 0;
+}
+.chatbox .incoming span {
+    width: 32px;
+    height: 32px;
+    color: #fff;
+    background: #d97706;
+    text-align: center;
+    line-height: 32px;
+    border-radius: 50%;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+.chat-input {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    background: #fff;
+}
+.chat-input input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
+    padding: 5px;
+}
+.chat-input button {
+    background: transparent;
+    border: none;
+    color: #d97706;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: bold;
+}
+.chat-input button:hover {
+    color: #b45309;
+}
+/* End Chatbot Styles */
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div class="logo">Sweet Crumbs</div>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#products">Products</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<div class="hero">
+<div>
+<h1>Freshly Baked Every Day</h1>
+<p>Delicious cakes, artisan breads, pastries, and custom creations made with love.</p>
+<a href="#products" class="btn">Explore Menu</a>
+</div>
+</div>
+</header>
+
+<section id="about">
+<h2 class="section-title">About Our Bakery</h2>
+<div class="about">
+<img src="https://images.unsplash.com/photo-1483695028939-5bb13f8648b0" alt="">
+<div>
+<h3>Crafting Sweet Memories Since 2010</h3>
+<br>
+<p>
+At Sweet Crumbs Bakery, we combine traditional baking techniques with premium ingredients to create unforgettable treats. From handcrafted artisan breads to elegant celebration cakes, every product is baked fresh daily.
+</p>
+<br>
+<p>
+We are committed to quality, taste, and customer satisfaction.
+</p>
+</div>
+</div>
+</section>
+
+<section id="products">
+<h2 class="section-title">Our Specialties</h2>
+
+<div class="products">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587">
+<div class="card-content">
+<h3>Chocolate Cake</h3>
+<p>Rich chocolate layers with smooth ganache.</p>
+<div class="price">₹799</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0">
+<div class="card-content">
+<h3>Fresh Croissants</h3>
+<p>Flaky, buttery, and freshly baked every morning.</p>
+<div class="price">₹120</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec">
+<div class="card-content">
+<h3>Artisan Bread</h3>
+<p>Traditional sourdough with a perfect crust.</p>
+<div class="price">₹199</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="contact">
+<div class="contact">
+<h2>Visit Our Bakery</h2>
+<p>📍 Main Street, Your City</p>
+<p>📞 +91 98765 43210</p>
+<p>📧 hello@sweetcrumbs.com</p>
+<p>Open Daily: 7:00 AM – 9:00 PM</p>
+</div>
+</section>
+
+<footer>
+<p>© 2026 Sweet Crumbs Bakery. All Rights Reserved.</p>
+</footer>
+
+<!-- Chatbot Widget -->
+<button class="chatbot-toggler">
+    <span class="open-icon">💬</span>
+    <span class="close-icon">✖</span>
+</button>
+<div class="chatbot">
+    <header>
+        <h2>Sweet Crumbs Bot</h2>
+    </header>
+    <ul class="chatbox" id="chatbox">
+        <li class="chat incoming">
+            <span>🤖</span>
+            <p>Hi there! 👋 How can I help you today?</p>
+        </li>
+    </ul>
+    <div class="chat-input">
+        <input type="text" id="chat-input-field" placeholder="Enter a message..." required>
+        <button id="send-btn">Send</button>
+    </div>
+</div>
+
+<script>
+    const chatbotToggler = document.querySelector(".chatbot-toggler");
+    const chatbox = document.querySelector("#chatbox");
+    const chatInput = document.querySelector("#chat-input-field");
+    const sendBtn = document.querySelector("#send-btn");
+    
+    let chatHistory = [];
+
+    chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+
+    const createChatLi = (message, className) => {
+        const chatLi = document.createElement("li");
+        chatLi.classList.add("chat", className);
+        let chatContent = className === "outgoing" ? `<p></p>` : `<span>🤖</span><p></p>`;
+        chatLi.innerHTML = chatContent;
+        chatLi.querySelector("p").textContent = message;
+        return chatLi;
+    }
+
+    const generateResponse = async (userMessage, incomingChatLi) => {
+        const messageElement = incomingChatLi.querySelector("p");
+        
+        try {
+            const response = await fetch("http://127.0.0.1:5000/api/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ message: userMessage, history: chatHistory })
+            });
+            const data = await response.json();
+            
+            if (data.reply) {
+                messageElement.textContent = data.reply;
+                chatHistory.push({ role: "user", content: userMessage });
+                chatHistory.push({ role: "assistant", content: data.reply });
+            } else {
+                messageElement.textContent = "Oops! Something went wrong.";
+            }
+        } catch (error) {
+            messageElement.textContent = "Oops! Could not connect to the server.";
+        }
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+    }
+
+    const handleChat = () => {
+        const userMessage = chatInput.value.trim();
+        if (!userMessage) return;
+
+        chatInput.value = "";
+        
+        // Append user's message to chatbox
+        chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+
+        setTimeout(() => {
+            // Display "Thinking..." while waiting for the response
+            const incomingChatLi = createChatLi("Thinking...", "incoming");
+            chatbox.appendChild(incomingChatLi);
+            chatbox.scrollTo(0, chatbox.scrollHeight);
+            generateResponse(userMessage, incomingChatLi);
+        }, 600);
+    }
+
+    sendBtn.addEventListener("click", handleChat);
+    chatInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            handleChat();
+        }
+    });
+</script>
+
+</body>
+</html>

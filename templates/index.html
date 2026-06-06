@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweet Crumbs Bakery</title>
+<meta name="description" content="Fresh cakes and pastries delivered to your door. Order online from Sweet Crumbs Bakery.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-logo">🧁 Sweet Crumbs</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-content">
+    <span class="badge">Freshly Baked Daily</span>
+    <h1>Artisan Cakes<br><span class="accent">Made With Love</span></h1>
+    <p>Premium handcrafted cakes delivered to your door. Order now and get it in 30-45 minutes.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn btn-primary">View Menu</a>
+      <a href="#chat" class="btn btn-outline">Chat With Us</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="floating-card card-1">🍰 Red Velvet<span>Rs.650</span></div>
+    <div class="floating-card card-2">🎂 Black Forest<span>Rs.550</span></div>
+    <div class="cake-img">🎂</div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="section about-section">
+  <div class="container">
+    <h2 class="section-title">About <span class="accent">Our Bakery</span></h2>
+    <div class="about-grid">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?w=600" alt="Bakery Interior">
+      </div>
+      <div class="about-text">
+        <h3>Crafting Sweet Memories Since 2010</h3>
+        <p>At Sweet Crumbs Bakery, we combine traditional baking with premium ingredients to create unforgettable treats. Every product is baked fresh daily with no preservatives.</p>
+        <div class="stats-row">
+          <div class="stat"><span>500+</span>Happy Customers</div>
+          <div class="stat"><span>4</span>Signature Cakes</div>
+          <div class="stat"><span>16</span>Years Experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="section menu-section">
+  <div class="container">
+    <h2 class="section-title">Our <span class="accent">Specialties</span></h2>
+    <div class="menu-grid" id="menuGrid">
+      <!-- Cards loaded by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- INFO CARDS -->
+<section class="section info-section">
+  <div class="container">
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon">🕘</div>
+        <h4>Opening Hours</h4>
+        <p>9:00 AM – 6:00 PM<br>Every Day</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🚚</div>
+        <h4>Home Delivery</h4>
+        <p>Rs.30 Delivery Charge<br>30-45 Min</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">💳</div>
+        <h4>Payment</h4>
+        <p>Cash &amp; Online<br>Payment Accepted</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">📍</div>
+        <h4>Location</h4>
+        <p>Main Street<br>Your City</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section contact-section">
+  <div class="container">
+    <h2 class="section-title">Get In <span class="accent">Touch</span></h2>
+    <div class="contact-box">
+      <div class="contact-item">📞 <strong>+91 98765 43210</strong></div>
+      <div class="contact-item">📧 <strong>hello@sweetcrumbs.com</strong></div>
+      <div class="contact-item">📍 <strong>Main Street, Your City</strong></div>
+      <div class="contact-item">🕘 <strong>9:00 AM – 6:00 PM Daily</strong></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>© 2026 Sweet Crumbs Bakery. All Rights Reserved.</p>
+</footer>
+
+<!-- CHATBOT BUTTON -->
+<button class="chat-toggle" id="chatToggle" aria-label="Open Chat">
+  <span class="chat-open">💬</span>
+  <span class="chat-close">✖</span>
+</button>
+
+<!-- CHATBOT WIDGET -->
+<div class="chatbot-widget" id="chatbot">
+  <div class="chatbot-header">
+    <div class="bot-info">
+      <div class="bot-avatar">🤖</div>
+      <div>
+        <div class="bot-name">Sweet Crumbs Bot</div>
+        <div class="bot-status">● Online</div>
+      </div>
+    </div>
+  </div>
+  <ul class="chatbox" id="chatbox">
+    <li class="msg incoming">
+      <span class="bot-icon">🤖</span>
+      <div class="bubble">
+        <p>Hi! 👋 Welcome to <strong>Sweet Crumbs Bakery</strong>!<br>How can I help you today?</p>
+        <div class="quick-btns">
+          <button onclick="quickSend('Show me the menu')">📋 Menu</button>
+          <button onclick="quickSend('What are the opening hours?')">🕘 Hours</button>
+          <button onclick="quickSend('How much is delivery?')">🚚 Delivery</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="chat-footer">
+    <div class="typing-indicator" id="typingIndicator" style="display:none">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="chatInput" placeholder="Type a message..." autocomplete="off">
+      <button id="sendBtn" onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="orderModal" style="display:none">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>🧾 Place an Order</h3>
+      <button onclick="closeModal()">✖</button>
+    </div>
+    <div class="modal-body">
+      <select id="orderProduct">
+        <option value="">-- Select Cake --</option>
+      </select>
+      <input type="number" id="orderQty" placeholder="Quantity" min="1" value="1">
+      <input type="text" id="orderName" placeholder="Your Name">
+      <input type="text" id="orderPhone" placeholder="Phone Number">
+      <input type="text" id="orderAddress" placeholder="Delivery Address">
+      <button class="btn btn-primary full" onclick="submitOrder()">Confirm Order</button>
+    </div>
+    <div class="modal-result" id="orderResult" style="display:none"></div>
+  </div>
+</div>
+
+<!-- TRACK ORDER MODAL -->
+<div class="modal-overlay" id="trackModal" style="display:none">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>📦 Track Order</h3>
+      <button onclick="document.getElementById('trackModal').style.display='none'">✖</button>
+    </div>
+    <div class="modal-body">
+      <input type="text" id="trackId" placeholder="Enter Order ID (e.g. SCB1001)">
+      <button class="btn btn-primary full" onclick="trackOrder()">Track</button>
+    </div>
+    <div class="modal-result" id="trackResult" style="display:none"></div>
+  </div>
+</div>
+
+<script src="/static/js/main.js"></script>
+</body>
+</html>
